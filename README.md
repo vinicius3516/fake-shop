@@ -8,7 +8,9 @@ O projeto está finalizado e pronto para execução, sendo necessário seguir os
 
 ## 1. Fork do Projeto
 
-Faça um fork deste repositório para sua conta do GitHub.
+Faça um fork deste repositório para sua conta do GitHub, e no arquivo .yaml dentro de .github/workflows, atualize o nome de usuario da imagem docker.
+
+"seu-user-dockerhub"/fake-shop:v${{ github.run_number }}
 
 ## 2. Criar Cluster Kubernetes
 
