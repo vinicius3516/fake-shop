@@ -21,12 +21,25 @@ jobs:
           context: ./src
           push: true
           file: ./src/Dockerfile
-          tags: vinny6202/fake-shop:v${{ github.run_number }}
+          tags: |
+            vinny6202/fake-shop:v${{ github.run_number }}
+            vinny6202/fake-shop
   CD:
     needs: [CI]
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Obter Codigo"
-      - run: echo "Configurar o kube-Config"
-      - run: echo "Execultar o apply"
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - uses: azure/k8s-set-context@v4
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.k8S_KUBECONFIG }}
+
+      - uses: Azure/k8s-deploy@v5
+        with:
+          manifests: |
+            k8s/deployment.yaml
+          images: 
+            vinny6202/fake-shop:v${{ github.run_number }}
         
