@@ -23,7 +23,6 @@ jobs:
           file: ./src/Dockerfile
           tags: |
             vinny6202/fake-shop:v${{ github.run_number }}
-            vinny6202/fake-shop
   CD:
     needs: [CI]
     runs-on: ubuntu-latest
